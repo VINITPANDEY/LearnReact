@@ -9,7 +9,6 @@ function Wetherapp() {
 
     const getData = async () => {
         const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=d0f85e26df7c7a0773b2b695bed6fc0e`);
-        setLoader(false);
         return response.data;
     };
     const handleSubmit = (e) => {
@@ -20,7 +19,8 @@ function Wetherapp() {
 
     useEffect(() => {
       setTimeout(() => {
-        getData().then((text) => setWether(text));
+        getData().then((text) => {setWether(text)
+                   setLoader(false)});
       }, 1500);
       },[cityName]);
       
