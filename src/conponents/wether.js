@@ -11,6 +11,7 @@ function Wetherapp() {
         const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=d0f85e26df7c7a0773b2b695bed6fc0e`);
         return response.data;
     };
+    
     const handleSubmit = (e) => {
       e.preventDefault();
       setCityName(name);
