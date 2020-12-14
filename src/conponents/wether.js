@@ -25,7 +25,6 @@ function Wetherapp() {
                    setLoader(false)});
       }, 1500);
       },[cityName]);
-      
 
     return (
       <div>
