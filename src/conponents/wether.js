@@ -12,6 +12,7 @@ function Wetherapp() {
         return response.data;
     };
     
+    
     const handleSubmit = (e) => {
       e.preventDefault();
       setCityName(name);
