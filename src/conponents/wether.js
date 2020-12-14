@@ -33,7 +33,7 @@ function Wetherapp() {
                   <div class="card">
                     <form onSubmit={handleSubmit}>
                       <label>
-                        City Name:
+                        City Name :
                         <input
                           type="text"
                           value={name}
