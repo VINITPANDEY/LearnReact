@@ -6,10 +6,10 @@ function Wetherapp() {
     const [name, setName] = useState("");
     const [cityName,setCityName] = useState("jaipur");
     const [loader, setLoader] = useState(true);
+    const [date_time, setDate] = useState(Date.now());
 
     const getData = async () => {
-      let city=cityName;
-        const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=d0f85e26df7c7a0773b2b695bed6fc0e`);
+        const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=d0f85e26df7c7a0773b2b695bed6fc0e`);
         return response.data;
     };
     
@@ -19,7 +19,6 @@ function Wetherapp() {
       setCityName(name);
       setLoader(true);
     }
-
 
     useEffect(() => {
       setTimeout(() => {
@@ -45,13 +44,11 @@ function Wetherapp() {
                       <input type="submit" value="Submit" />
                     </form>
                     {loader?<h2 class="ml-auto mr-4 mt-3 mb-0">loading...</h2>:<>
-                                              <h2 class="ml-auto mr-4 mt-3 mb-0">{wether.name}</h2>
-                                              <p class="ml-auto mr-4 mb-0 med-font">{wether.main.temp}*</p>
-                                              <h1 class="ml-auto mr-4 large-font">{wether.main.humidity}</h1>
-                                              <p class="time-font mb-0 ml-4 mt-auto">08:30 <span class="sm-font">AM</span></p>
-                                              <p class="ml-4 mb-4">Wednesday, 18 October 2019</p>
-                                              </>
-                      }
+                      <h2 class="ml-auto mr-4 mt-3 mb-0">{wether.name}</h2>
+                      <p class="ml-auto mr-4 mb-0 med-font">{wether.main.temp}*</p>
+                      <h1 class="ml-auto mr-4 large-font">{wether.main.humidity}</h1>
+                      <p class="time-font mb-0 ml-4 mt-auto">{date_time} <span class="sm-font">AM</span></p>
+                      <p class="ml-4 mb-4">Wednesday, 18 October 2019</p>
                   </div>
               </div>
           </div>
