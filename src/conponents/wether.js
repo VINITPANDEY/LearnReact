@@ -6,10 +6,11 @@ function Wetherapp() {
     const [name, setName] = useState("");
     const [cityName,setCityName] = useState("jaipur");
     const [loader, setLoader] = useState(true);
-    const [Date_t, setDate_t] = useState( Date.now());
-   
+    const [Date_t, setDate_t] = useState("");
+
     const getData = async () => {
-        const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=d0f85e26df7c7a0773b2b695bed6fc0e`);
+      let city=cityName;
+        const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=d0f85e26df7c7a0773b2b695bed6fc0e`);
         return response.data;
     };
     
@@ -20,11 +21,13 @@ function Wetherapp() {
       setLoader(true);
     }
 
+
     useEffect(() => {
       setTimeout(() => {
         getData().then((text) => {setWether(text)
                    setLoader(false)});
       }, 1500);
+      setDate_t( new Date().toJSON().slice(0,10).replace(/-/g,'/'));
       },[cityName]);
 
     return (
@@ -43,11 +46,15 @@ function Wetherapp() {
                       </label>
                       <input type="submit" value="Submit" />
                     </form>
-                      <h2 class="ml-auto mr-4 mt-3 mb-0">{wether.name}</h2>
-                      <p class="ml-auto mr-4 mb-0 med-font">{wether.main.temp}*</p>
-                      <h1 class="ml-auto mr-4 large-font">{wether.main.humidity}</h1>
-                      <p class="time-font mb-0 ml-4 mt-auto">{Date_t} <span class="sm-font">AM</span></p>
-                      <p class="ml-4 mb-4">Wednesday, 18 October 2019</p>
+                    {loader?<h2 class="ml-auto mr-4 mt-3 mb-0">loading...</h2>:<>
+                                              <h2 class="ml-auto mr-4 mt-3 mb-0">{wether.name}</h2>
+                                              <p class="ml-auto mr-4 mb-0 med-font">{wether.main.temp}*</p>
+                                              <h1 class="ml-auto mr-4 large-font">{wether.main.humidity}</h1>
+                                              {/* <p class="time-font mb-0 ml-4 mt-auto">08:30 <span class="sm-font">AM</span></p>
+                                              <p class="ml-4 mb-4">Wednesday, 18 October 2019</p> */}
+                                              <p class="ml-4 mb-4">{Date_t}</p>
+                                              </>
+                      }
                   </div>
               </div>
           </div>
