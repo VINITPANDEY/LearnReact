@@ -9,8 +9,11 @@ function App() {
     <div>  
      <Heder/>
      {/* <Counter/> */}
-     <Wetherapp/>
+     {/* <Wetherapp/> */}
+     <phonebook/>
      <Footer/>
+     
+     
     </div>
     
   );
